@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="dns-prefetch" href="" />
+    <meta http-equiv="x-dns-prefetc-control" content="on" />
+  </head>
+  <body>
+    <video>
+      <source src="./Intermission-Walk-in.ogv" />
+      <source src="./Intermission-Walk-in_512kb.mp4" />
+    </video>
+    <div>
+      <button id="play">播放</button>
+      <button id="currentTime">00:00:00</button>
+      <button id="duration">00:00:00</button>
+      <button id="muted">静音</button>
+    </div>
+
+    <script>
+      const video = document.querySelector('video'),
+        play = document.getElementById('play'),
+        currentTime = document.getElementById('currentTime'),
+        duration = document.getElementById('duration'),
+        muted = document.getElementById('muted')
+
+      let timer = null
+      let isInit = false
+
+      function setPlayText () {
+        play.innerText = video.paused ? '播放' : '暂停'
+      }
+
+      function togglePlay () {
+        video.paused ? video.play() : video.pause()
+      }
+      
+      function processTime (time) {
+        let min = parseInt(time / 60).toString().padStart(2, 0)
+        let seconds = parseInt(time % 60).toString().padStart(2, 0)
+        return `00:${min}:${seconds}`
+      }
+
+      function showCurrentTime () {
+        timer = setInterval(() => {
+          currentTime.innerText = processTime(video.currentTime)
+        }, 1000)
+      }
+
+      function showDuration () {
+        duration.innerText = processTime(video.duration)
+      }
+
+      function init () {
+        isInit = true
+
+        togglePlay()
+        setPlayText()
+        showCurrentTime()
+        showDuration()
+      }
+
+      function toggleShowText () {
+        togglePlay()
+        setPlayText()
+        !video.paused ? clearInterval(timer) : showCurrentTime()
+      }
+
+      function playCtrl () {
+        !isInit ? init() : toggleShowText()
+      }
+
+      function mutedCtrl () {
+        video.volume ? video.volume = 0 : video.volume = 1
+      }
+
+      function canPlayCtrl () {
+        play.addEventListener('click', playCtrl, false)
+
+        muted.addEventListener('click', mutedCtrl, false)
+      }
+
+      video.addEventListener('canplaythrough', canPlayCtrl, false)
+
+      function ended () {
+        setPlayText()
+        clearInterval(timer)
+        
+        video.currentTime = 0
+        currentTime.innerText = '00:00:00'
+        isInit = false
+      }
+
+      video.addEventListener('ended', ended, false)
+
+    </script>
+  </body>
+</html>

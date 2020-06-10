@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="render" content="webkit" />
+    <link rel="dns-prefetch" href="" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <style>
+      li{
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        background: #ccc;
+        list-style: none;
+      }
+      div{
+        width: 100px;
+        height: 100px;
+        background: red;
+        margin: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li draggable="true">1</li>
+    </ul>
+    <div id="box"></div>
+    <script>
+      var oLi = document.querySelector('li')
+      var oDiv = document.querySelector('div')
+
+      // 拖放元素
+      oLi.addEventListener('dragstart', function (ev) {
+        // 解决火狐下无法拖放
+        ev.dataTransfer.setData('name', 'hello')
+        // 设置拖放影子元素 元素 x轴 y轴
+        ev.dataTransfer.setDragImage(oDiv, 0, 0)
+      }, false)
+      oLi.addEventListener('drag', function () {
+        // 拖放过程中连续触发
+      }, false)
+      oLi.addEventListener('dragend', function () {}, false)
+
+      // 目标元素
+      oDiv.addEventListener('dragenter', function () {}, false)
+      oDiv.addEventListener('dragleave', function () {}, false)
+      // 进入目标元素 离开目标元素过程中连续触发
+      oDiv.addEventListener('dragover', function (ev) {
+        // drop 事件生效前提必须在此事件中阻止默认事件
+        ev.preventDefault()
+      }, false)
+
+      // 在目标元素上释放鼠标触发
+      oDiv.addEventListener('drop', function (ev) {
+        ev.dataTransfer.getData('name')
+      }, false)
+
+    </script>
+  </body>
+</html>

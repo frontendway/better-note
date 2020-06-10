@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="render" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link rel="dns-prefetch" href="" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <style>
+      div{
+        width: 200px;
+        height: 200px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <script>
+      var div = document.querySelector('div')
+
+      div.addEventListener('dragenter', function (ev) {
+        this.innerHTML = '可以松开鼠标'
+      }, false)
+
+      div.addEventListener('dragover', function (ev) {
+        ev.preventDefault()
+      }, false)
+
+      div.addEventListener('dragleave', function (ev) {
+        this.innerHTML = '不可以松开鼠标'
+      }, false)
+
+      div.addEventListener('drop', function (ev) {
+        // 防止拖拽的图片释放后浏览器默认打开图片
+        ev.preventDefault()
+
+        var fd = new FileReader()
+        fd.readAsDataURL(ev.dataTransfer.files[0])
+        fd.onload = function () {
+          var img = document.createElement('img')
+          img.src = this.result
+          document.body.appendChild( img )
+        }
+      }, false)
+
+    </script>
+  </body>
+</html>

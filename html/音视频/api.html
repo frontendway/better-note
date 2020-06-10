@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit" />
+    <link rel="dns-prefetch" href="" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+  </head>
+  <body>
+    <audio id="audio" src="" autoplay loop controls></audio>
+    <video controls>
+      <source src="" />
+      <source src="" />
+    </video>
+
+    <script>
+      var audio = document.querySelector('#audio')
+
+      // 属性
+        audio.currentTime // 可读写 单位s
+        audio.duration // 总时长
+        audio.paused // 是否暂停
+        audio.ended  // 是否播放完毕
+        audio.error  // 媒体发生错误
+        audio.currentSrc // 以字符串形式返回媒体地址
+        audio.volume // 音量 0.0 - 1.0
+        audio.muted // 静音返回 true
+      
+      // api
+        audio.play()
+        audio.pause()
+        audio.load() // 视频修改 src 地址后、要重新加载才能播放需调用 load
+      
+      // video 独有
+        video.poster = 'imgurl' // 视频预览图片
+        video.width = 500 // 设置视频宽高
+        video.height = 500
+        video.videoWidth // 视频实际尺寸
+        video.videoHeight // 视频实际尺寸
+      
+      // 事件
+        canplaythrough // 音视频能够不停顿地一直播放
+        canplay // 浏览器能够开始播放指定的音频/视频时
+        timeupdate // 播放位置发生改变时触发
+        progress // 正在下载指定的音视频时
+        loadstart // 当浏览器开始寻找指定的音频/视频时
+        durationchange // 当音视频加载后时长将由 "NaN" 变为音频/视频的实际时长
+        loadeddata // 当前帧的数据已加载、但没有足够的数据来播放指定音视频的下一帧时
+
+    </script>
+  </body>
+</html>

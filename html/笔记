@@ -15,5 +15,76 @@
       等同于 HTML 4.01Transitional，允许框架集内容
 
 head 内标签
-  
+  双核浏览器使用 webkit 渲染
+    <meta name="renderer" content="webkit" />
+  DNS 预解析
+    <link rel="dns-prefetch" href="//www.imooc.com" />
+    <meta http-equiv="x-dns-preftch-control" content="on" />
+  viewport
+    <meta 
+      name="viewport" 
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" 
+    />
+  规定 html 文档字符的编码
+    <meta charset="UTF-8" />
+
 body 内标签
+  与主体内容相关的附属信息
+    aside
+  缩写
+    <abbr title="">www</abbr>
+  标题组
+    hgroup
+  表单
+    <form action="url1">
+      <input type="submit" value="提交" />
+      <input type="submit" value="保存至草稿箱" formaction="url2" />
+    </form>
+  视频，图片与文字的组合描述
+    <figure>
+      <img src="" />
+      <figcaption>海报描述</figcaption>
+    </figure>
+  下拉关联
+    <input type="text" list="vlist" />
+    <datalist id="vlist">
+      <option value="js">js</option>
+    </datalist>
+  时间
+    <time>9:00</time>
+    <time datetime="2008-02-14">情人节</time>
+  header
+  footer
+  nav
+  address
+  <progress value="10" max="100"></progress>
+  
+标签属性
+  可编辑
+    <div contenteditable="true"></div>
+  语音输入
+    <input type="text" x-webkit-speech />
+  无法显示图像则显示替代文本
+    alt
+  关于元素的额外信息，通常鼠标悬浮会有提示
+    title
+
+语义化区别
+  em i
+    em 起强调的作用文本倾斜展示，如果只是展示位斜体则用 i 标签
+  strong b
+    重要文本粗体展示，表示文本在上下文的重要性的
+  mark
+    标记标签
+    用来显示与用户当前活动相关的一部分内容，例如用于显示匹配搜索结果中的单词
+    不要为了语法高亮而用 mark 元素，你应该用 strong
+    是一种关联性的上下文，并非强调
+  title
+    更重于网站信息
+  h1
+    从文章角度看、用于概括文章主题
+  section
+    以内容为维度划分的区域、通常会带有标题
+  article
+    来源独立用于聚合而成
+    如：网页作者，博客首页的每篇博客，论坛帖子的一楼二楼三楼，用户提交的评论内容
