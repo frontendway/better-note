@@ -53,12 +53,22 @@ body 内标签
   时间
     <time>9:00</time>
     <time datetime="2008-02-14">情人节</time>
+  定义文档或文章的作者/拥有者的联系信息
+  如果 address 元素位于 body 元素内，则它表示文档联系信息
+  如果 address 元素位于 article 元素内，则它表示文章的联系信息
+  address 元素中的文本通常呈现为斜体
+  不应该使用 address 标签来描述邮政地址，除非这些信息是联系信息的组成部分
+    <address>
+      Written by W3School.com.cn<br />
+      <a href="mailto:us@example.org">Email us</a><br />
+      Address: Box 564, Disneyland<br />
+      Phone: +12 34 56 78
+    </address>
   header
   footer
   nav
-  address
   <progress value="10" max="100"></progress>
-  
+
 标签属性
   可编辑
     <div contenteditable="true"></div>
