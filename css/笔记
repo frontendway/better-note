@@ -1,0 +1,20 @@
+transitionend、animationend
+  标准下写法
+    ele.addEventListener('transitionend', fn, false)
+  webkit内核写法
+    ele.addEventListener('webkitTransitionEnd', fn, false)
+  欧朋浏览器
+    ele.addEventListener('oTransitionEnd', fn, false)
+  火狐浏览器
+    ele.addEventListener('mozTransitionEnd', fn, false)
+
+input 聚焦键盘遮挡页面
+  Oinput.onFocus = function () {
+    延时是因为键盘抬起需要时间
+    setTimeout(() => {
+      let nowTop = this.getBoundingClientRect().top
+      if (nowTop > window.innerHeight) {
+        键盘遮挡住了页面、计算出差值然后translateY
+      }
+    }, 500)
+  }

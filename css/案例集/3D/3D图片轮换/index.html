@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		#wrap{width: 500px;height: 500px;margin: 100px auto 0px;position: relative;transform-style: preserve-3d;perspective: 1800px;overflow: hidden;}
+		img{position: absolute;transform-origin: bottom center 0px;width: 500px;height: 500px;opacity: 0;}
+		img:nth-of-type(1){opacity: 1;}
+		.hide{animation: h 1s ease 0s;}
+		.show{animation: s 1s ease 0.2s;}
+		@keyframes h{
+			0%{opacity: 1;transform: rotateX(0deg);}
+			100%{opacity: 0;transform: rotateX(-50deg);}
+		}
+		@keyframes s{
+			0%{opacity: 0;transform: rotateX(50deg);}
+			100%{opacity: 1;transform: rotateX(0deg);}
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<img src="img1.jpg">
+		<img src="img2.jpg">
+		<img src="img3.jpg">
+		<img src="img5.jpg">
+	</div>
+	<a href="javascript:;">上一张</a>
+	<a href="javascript:;">下一张</a>
+</body>
+</html>
+<script type="text/javascript">
+	/*var imgs=document.querySelectorAll('img');
+	var btns=document.querySelectorAll('a');
+	var num=0;
+	btns[1].onclick=function(){
+		trans(num,'all .5s',-100,0);
+		num++;
+		num%=imgs.length;
+		trans(num,'',60,0);
+		setTimeout(function(){
+			trans(num,'all .5s',0,1);
+		},50);
+	}
+
+	function trans(num,transition,deg,opacity){
+		imgs[num].style.transition=transition;
+		imgs[num].style.transform='rotateX('+deg+'deg)';
+		imgs[num].style.opacity=opacity;
+	}*/
+
+	function mationEnd(ele,fn) {
+		ele.addEventListener('webkitAnimationEnd',fn,false);
+		ele.addEventListener('animationEnd',fn,false);
+	}
+
+	var imgs=document.querySelectorAll('img');
+	var btns=document.querySelectorAll('a');
+	var num=0;
+	var now,next=null;
+
+	btns[1].onclick=function(){
+		now=num;
+		imgs[num].classList.add('hide');
+		num++;
+		num%= imgs.length;
+		next=num;
+		imgs[num].classList.add('show');
+	}
+
+	for(var i=0;i<imgs.length;i++) {
+		mationEnd(imgs[i],fn1);
+	}
+
+	function fn1() {
+		imgs[now].style.opacity=0;
+		imgs[now].classList.remove('hide');
+		imgs[next].style.opacity=1;
+		imgs[next].classList.remove('show');
+	}
+	
+
+
+
+
+</script>

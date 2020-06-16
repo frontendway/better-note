@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		*{padding: 0px;margin: 0px;}
+		li{list-style-type: none;}
+		#wrap{width: 800px;height: 360px;margin: 150px auto;border: 1px solid red;}
+		#list{height: 100%;perspective: 800px;}
+		#list li{float: left;width: 50px;height: 100%;position: relative;transform-origin: center center -180px;transform-style: preserve-3d;}
+		#list a{position: absolute;width: 100%;height: 100%;left: 0px;top: 0px;}
+		#list li a:nth-of-type(1){background: url(1.jpg) no-repeat;z-index: 4;}
+		#list li a:nth-of-type(2){background: url(2.jpg) no-repeat;z-index: 3;top: 360px;transform-origin: top center 0px;transform: rotateX(-90deg);}
+		#list li a:nth-of-type(3){background: url(3.jpg) no-repeat;z-index: 2;transform: translateZ(-360px) rotateX(180deg);}
+		#list li a:nth-of-type(4){background: url(4.jpg) no-repeat;z-index: 1;top: -360px;transform-origin: bottom center 0px;transform: rotateX(90deg)}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="list">
+			<!-- <li>
+				<a href=""></a>
+				<a href=""></a>
+				<a href=""></a>
+				<a href=""></a>
+			</li> -->
+		</ul>
+	</div>
+	<div id="button">
+		<a href="javascript:;">1</a>
+		<a href="javascript:;">2</a>
+		<a href="javascript:;">3</a>
+		<a href="javascript:;">4</a>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var list=document.querySelector('#list');
+	var lis=list.getElementsByTagName('li');
+	var btns=document.querySelector('#button').children;
+	var len=16;
+	var str='';
+	var index=1;
+	for(var i=0;i<len;i++){
+		i<8?index++:index--;
+		str+='<li style="z-index:'+index+';">\
+				<a href="" style="background-position:'+(i*-50)+'px 0px;"></a>\
+				<a href="" style="background-position:'+(i*-50)+'px 0px;"></a>\
+				<a href="" style="background-position:'+(i*-50)+'px 0px;"></a>\
+				<a href="" style="background-position:'+(i*-50)+'px 0px;"></a>\
+			</li>';
+	}
+	list.innerHTML=str;
+
+	for(var i=0;i<btns.length;i++){
+		btns[i].index=i;
+		btns[i].onclick=function(){
+			for(var i=0;i<lis.length;i++){
+				lis[i].style.transition='all 1s ease '+(i*50)+'ms';
+				lis[i].style.transform='rotateX('+(this.index*90)+'deg)';
+			}
+		}
+	}
+
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		li {
+			list-style-type: none;
+		}
+		#wrap {
+			width: 150px;
+			height: 150px;
+			margin: 100px auto;
+			border: 1px solid #000;
+			border-radius: 50%;
+			position: relative;
+		}
+		li {
+			width: 1px;
+			height: 4px;
+			background: red;
+			position: absolute;
+			left: 75px;
+			top: 0px;
+			transform-origin: center 75px;
+		}
+		li:nth-of-type(5n+1) {
+			height: 8px;
+			background: blue;
+		}
+
+		#h,#m,#s,#round {
+			position: absolute;
+			left: 50%;
+			transform-origin: center bottom;
+		}
+
+		#h {
+			width: 6px;
+			height: 30px;
+			background: #000;
+			margin-left: -3px;
+			top: 45px;
+		}
+		#m {
+			width: 4px;
+			height: 50px;
+			background: red;
+			margin-left: -2px;
+			top: 25px;
+		}
+		#s {
+			width: 2px;
+			height: 60px;
+			background: #ccc;
+			margin-left: -1px;
+			top: 15px;
+		}
+		#round {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: red;
+			margin: auto;
+			margin-left: -3px;
+			top: 72px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrap">
+		<ul>
+		</ul>
+		<span id="h"></span>
+		<span id="m"></span>
+		<span id="s"></span>
+		<span id="round"></span>
+	</div>
+</body>
+
+</html>
+<script type="text/javascript">
+	var ul = document.querySelector('ul');
+	var oh = document.querySelector('#h');
+	var os = document.querySelector('#s');
+	var om = document.querySelector('#m');
+	var str = '';
+	for (var i = 0; i < 60; i++) {
+		str += '<li style="transform: rotate(' + (i * 6) + 'deg)"></li>';
+	}
+	ul.innerHTML = str;
+
+	setInterval(function () {
+		var cur = new Date();
+		var h = cur.getHours();
+		var m = cur.getMinutes();
+		var s = cur.getSeconds();
+		h = parseFloat((m / 60).toFixed(1)) + h;
+		os.style.transform = 'rotate(' + (s * 6) + 'deg)';
+		om.style.transform = 'rotate(' + (m * 6) + 'deg)';
+		oh.style.transform = 'rotate(' + (h * 30) + 'deg)';
+	}, 1000);
+
+
+</script>

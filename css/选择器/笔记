@@ -1,0 +1,49 @@
+属性选择器
+  p[miaov]
+  p[miaov=leo]
+  以下模糊匹配
+  p[miaov~=leo]
+    属性值的词列表中包含 leo
+  p[miaov*=leo]
+    属性值包含 leo、不需要是词列表匹配
+  p[miaov^=l]
+    属性值的词以 l 开头
+  p[miaov$=l]
+    属性值的词以 l 结尾
+  p[miaov|=b]
+    以 b- 开头或只是 b
+
+伪类选择器
+  某种状态下显示的样式
+  p 元素父级下第一个是 p 的子元素
+    p:nth-child(even/odd)
+    p:nth-last-child
+    p:first-child
+    p:last-child
+  找到 p 元素父级下的第 2 个 p 元素
+    p:nth-of-type(2)
+    p:nth-last-of-type(1)
+    p:first-of-type
+    p:last-of-type
+  a:link     未访问
+  a:hover    
+  a:active   mousedown 时
+  a:visited  已访问后
+  input:focus
+  input:enabled/disabled
+  input:checked
+  :target
+
+伪元素选择器
+  不会出现在 dom 树中但却真实存在
+  p:first-line
+  p:first-letter
+  p:before
+  p:after
+  p::selection
+
+兄弟元素
+  p ~ h1
+    p 元素后所有的 h1 元素
+  p + h1
+    紧邻 p 元素后的 h1 元素

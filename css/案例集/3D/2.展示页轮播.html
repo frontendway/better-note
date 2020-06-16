@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		#wrap{width: 330px;height: 200px;margin: 100px auto;position: relative;transform-style: preserve-3d;perspective: 800px;}
+		#wrap div{width: 330px;height: 200px;border-radius: 10px;position: absolute;left: 0px;top: 0px;transition: all 1s ease 0s;}
+		#wrap div:nth-of-type(1){background: red;}
+		#wrap div:nth-of-type(2){background: orange;}
+		#wrap div:nth-of-type(3){background: yellow;}
+		#wrap div:nth-of-type(4){background: pink;}
+		#wrap div:nth-of-type(5){background: blue;}
+		#wrap div:nth-of-type(6){background: #ccc;}
+		#wrap div:nth-of-type(7){background: #666;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var wrap=document.querySelector('#wrap');
+	var divs=document.querySelectorAll('#wrap div');
+	var len=divs.length-1;
+	var now=3;
+	var target=3;
+	var center=3;
+	var timer=null;
+	var flag=true;
+	var fl=null;
+
+	function getPos(num){
+		var pos=[],left,right;
+		pos[center]=num;
+		for(var i=0;i<3;i++){
+			left=num-1-i;
+			if(left < 0){
+				left=left+divs.length;
+			}
+			pos[center-(i+1)]=left;
+			right=num+1+i;
+			right%=divs.length;
+			pos[center+(i+1)]=right;
+		}
+		return pos;
+	}	
+
+	/* function computedCenter (num) {
+		var arr = [], left, right;
+		arr[3] = num;
+
+		for (var i = 0; i < 3; i++) {
+			left = num - 1 - i;
+			if (left < 0) left = 7 + left;
+			arr[3 - i - 1] = left;
+
+			right = num + 1 + i;
+			if (right > 6) right = right % 7;
+			arr[ i + 3 + 1] = right;
+		}
+		
+		return arr;
+	}
+
+	computedCenter(2); */
+
+	function setPos(num){
+		var arr=getPos(num);
+		/* 此处循环是关键: 必须是从中间到2边散开的循环 */
+		for(var i=2;i>=0;i--){
+			divs[arr[i]].style.transform='translateX('+((center-i)*-150)+'px) translateZ('+((center-i)*-120)+'px) rotateY(30deg)';
+			divs[arr[len-i]].style.transform='translateX('+((center-i)*150)+'px) translateZ('+((center-i)*-120)+'px) rotateY(-30deg)';
+		}
+		divs[arr[center]].style.transform='translateZ(50px)';
+	}
+
+	function next(){
+		now++;
+		now%=divs.length;
+		setPos(now);
+	}
+
+	function fn(){
+		if(fl=='next'){
+			if(now == target){
+				flag=true;
+				return;
+			}
+			next();
+		}else if(fl=='prev'){
+			if(now == target){
+				flag=true;
+				return;
+			}
+			prev();
+		}
+	}
+
+	function add(obj,fn){
+		obj.addEventListener('transitionend',fn,false);
+		obj.addEventListener('webkitTransitionEnd',fn,false);
+	}
+
+	add(divs[target],fn);
+
+	function prev(){
+		now--;
+		if(now<0){
+			now=len;
+		}
+		setPos(now);
+	}
+
+	for(var i=0;i<divs.length;i++){
+		divs[i].index=i;
+		divs[i].onclick=function(){
+			if(flag){
+				
+				target=this.index;
+				var posIndex=getPos(now).join('').indexOf(''+target);
+				if(posIndex > 3){
+					flag=false;
+					fl='next';
+					next();
+				}else if(posIndex < 3){
+					flag=false;
+					fl='prev';
+					prev();
+				}
+			}			
+		}
+	}
+
+	setPos(now);
+</script>

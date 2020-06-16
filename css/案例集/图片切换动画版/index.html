@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		#wrap{width: 700px;height: 420px;margin: 100px auto 0px;}
+		#wrap div{width: 10px;height: 100%;background-repeat: no-repeat;transition: all .5s ease 0s;float: left;background-image: url(01.png);}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var wrap=document.querySelector('#wrap');
+	var divs=wrap.getElementsByTagName('div');
+	var str='';
+	var num=0;
+	var timer=null;
+	var a=2;
+	for(var i=0;i<70;i++){
+		str+='<div style="background-position:'+(i*-10)+'px 0px"></div>';
+	}
+	wrap.innerHTML=str;
+
+	function tab(n){
+		if(divs[n-1]){
+			divs[n-1].style.opacity=1;
+		}
+		if(divs[n]){
+			divs[n].style.opacity=0;
+			divs[n].style.backgroundImage='url(0'+a+'.png)';
+		}
+	}
+
+	function autoPlay(){
+		timer=setInterval(function(){
+			tab(num);
+			num++;
+			if(num == divs.length+1){
+				clearInterval(timer);
+				timer=null;
+				a++;
+				if(a == 6) a=1;
+				num=0;
+				autoPlay();
+			}
+		},100);
+	}
+
+	autoPlay();
+
+
+
+</script>

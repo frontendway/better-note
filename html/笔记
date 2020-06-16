@@ -27,6 +27,8 @@ head 内标签
     />
   规定 html 文档字符的编码
     <meta charset="UTF-8" />
+  外链样式
+    <link rel="stylesheet" href="" />
 
 body 内标签
   与主体内容相关的附属信息
