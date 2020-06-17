@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box{
+      display: grid;
+      width: 200px;
+      border: 1px solid red;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: repeat(3, 100px);
+    }
+    #box div{
+      background: #ccc;
+    }
+    #box div:nth-of-type(2){
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+  </div>
+</body>
+</html>
+<!-- 
+  父容器
+    display: grid
+      子元素 display 为 block
+    grid-template-rows
+    grid-template-columns
+      100px 100px
+      50% 50%
+      repeat(2, 50%)
+      repeat(auto-fill, 100px) 只设置 column 情况下每 100px 铺满后自动换行
+      150px 1fr 2fr
+      100px auto 100px auto 表示由浏览器自己分配长度
+      minmax(100px, 1fr) 表示列宽不小于100px 不大于1fr
+    column-gap
+    row-gap
+    gap
+      row-gap column-gap
+    grid-auto-flow
+      row 默认值
+      column
+      row dense
+      column dense
+    justify-items
+    align-items
+      start | end | center | stretch
+    place-items
+      align-items justify-items
+    justify-content
+    align-content
+      start 
+      end 
+      center 
+      stretch 
+      space-around 
+      space-between 
+      space-evenly
+    place-content
+      align-content justify-content
+  子容器
+    grid-column-start 
+      左边框所在的垂直网格线
+    grid-column-end 
+      右边框所在的垂直网格线
+    grid-row-start 
+      上边框所在的水平网格线
+    grid-row-end 
+      下边框所在的水平网格线
+    .item-1 {
+      grid-column-start: 2;
+      grid-column-end: 4;
+-->

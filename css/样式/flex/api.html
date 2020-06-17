@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      width: 104px;
+      border: 1px solid red;
+      display: flex;
+      flex-wrap: wrap-reverse;
+    }
+    span{
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+  </div>
+</body>
+</html>
+<!-- 
+  父容器
+    flex
+      display: flex 设置后子元素全部为 block 元素
+    flex-direction
+      row: x 轴从左向右(默认值)
+      row-reverse: x 轴从右向左
+      column: y 轴从上到下
+      column-reverse: y 轴从下到上
+    flex-wrap
+      nowrap: 不换行(默认)
+      wrap: 换行第一行在上方
+      wrap-reverse: 换行第一行在下方
+    flex-flow
+      默认值: row nowrap
+      flex-flow: <flex-direction> <flex-wrap>
+    justify-content
+      定义了项目在主轴上的对齐方式
+      flex-start: 左对齐(默认值)
+      flex-end: 右对齐
+      center: 居中
+      space-between: 与交叉轴两端对齐，轴线之间的间隔平均分布
+      space-around: 每根轴线两侧的间隔都相等，所以轴线之间的间隔比轴线与边框
+      space-evenly: 项目与项目的间隔相等
+    align-items
+      定义项目在交叉轴上如何对齐
+      flex-start: 交叉轴的起点对齐
+      flex-end: 交叉轴的终点对齐
+      center: 交叉轴的中点对齐
+      stretch: 如果项目未设置高度或设为 auto，将占满整个容器的高度(默认)
+      baseline: 项目的第一行文字的基线对齐
+    align-content
+      属性定义了多根轴线的对齐方式
+      flex-start: 与交叉轴的起点对齐
+      flex-end: 与交叉轴的终点对齐
+      center: 与交叉轴的中点对齐
+      stretch: 轴线占满整个交叉轴(默认值)
+      space-between: 与交叉轴两端对齐，轴线之间的间隔平均分布
+      space-around: 每根轴线两侧的间隔都相等，所以轴线之间的间隔比轴线与边框的间隔大一倍
+  子元素
+    order
+      定义项目的排列顺序，默认为 0
+    flex-grow
+      项目的放大比例，默认为 0 即如果存在剩余空间也不放大
+    flex-shrink
+      项目的缩小比例，默认为 1 即如果空间不足该项目将缩小
+    flex-basis
+      如果子容器设置了 flex-basis 或者 width，那么在分配空间之前，他们会先跟父容器预约这么多的空间，然后剩下的才是归入到剩余空间，然后父容器再把剩余空间分配给设置了 flex-grow 的容器
+      如果同时设置 flex-basis 和 width，那么 width 属性会被覆盖
+      如果 flex-basis 和 width 其中有一个是 auto，那么另外一个非 auto 的属性优先级会更高
+    flex
+      flex-grow flex-shrink flex-basis
+    align-self
+      允许单个项目有与其他项目不一样的对齐方式
+      auto
+      flex-start
+      flex-end
+      center
+      baseline
+      stretch
+-->

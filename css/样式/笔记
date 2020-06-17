@@ -1,0 +1,60 @@
+非布局样式
+  可继承
+    字体相关
+    list-style-type
+    cursor
+  
+  line-height 
+    line-height: 2/200%/2em 行高是字体大小的 2 倍
+  text-align
+    规定元素中的文本的水平对齐方式
+    justify
+      实现两端对齐文本效果
+  text-align-last
+    属性规定如何对齐文本的最后一行
+  移动端按下时的遮罩
+    a, input{ -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  去除系统默认 appearance 的样式、常用于 ios 下移除原生样式
+    a, input, button{ -webkit-appearance: none
+  禁止文字缩放、横竖屏切换时候文字会有所缩放
+    body{ -webkit-text-size-adjust: none
+  animation
+    animation: name 1s ease 0s n/infinite normal/alternate(轮流反向播放)
+    animation-play-state: paused | running
+    animation-fill-mode :
+      none      不改变默认行为
+      forwards  当动画完成后、保持最后一帧状态
+      backwards 在 animation-delay 的时间内、动画开始之前应用第一帧状态
+      both      向前和向后填充模式都被应用
+  transition
+    ease        以低速开始然后加快、在结束前变慢(默认)
+    linear      匀速
+    ease-in     以低速开始
+    ease-out    以低速结束
+    ease-in-out 动画以低速开始和结束
+  box-shadow
+    [inset] x y 模糊半径 扩展半径 color
+  text-shadow
+    x y 模糊半径 color
+  box-reflect
+    above below left right 距离 渐变
+  resize
+    both
+    horizontal
+    verical
+    none
+    需配合 overflow: auto
+  column
+    column-width
+    column-count
+    column-gap 栏目距离
+    column-rule 栏目间隔线
+  pointer-events
+    为 none 时如果元素绝对定位、它的下一层元素可被选中
+    只能用来禁用鼠标事件
+    元素的子元素 pointer-events 设置成其他值如 auto、点击子元素还是会通过冒泡形式触发父元素事件
+
+布局样式 
+  媒体查询
+    @media screen and (max-width: 980px) {}
+    @media screen and (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2){}
