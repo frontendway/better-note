@@ -8,24 +8,21 @@
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <style>
       div{
-        display: grid;
-        width: 200px;
-        height: 400px;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        text-align: justify;
+        line-height: 21px;
+        height: 21px;
         border: 1px solid red;
-        justify-items: end;
+      }
+      div::after{
+        content: "";
+        display: inline-block;
+        width: 100%;
       }
     </style>
   </head>
   <body>
     <div>
-      <span>1</span>
-      <span>2</span>
-      <span>3</span>
-      <span>4</span>
-      <span>5</span>
-      <span>6</span>
+      测试的文字
     </div>
   </body>
 </html>
