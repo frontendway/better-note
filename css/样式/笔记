@@ -4,7 +4,7 @@
     list-style-type
     cursor
   
-  line-height 
+  line-height
     line-height: 2/200%/2em 行高是字体大小的 2 倍
   text-align
     规定元素中的文本的水平对齐方式
@@ -55,6 +55,34 @@
     为 none 时如果元素绝对定位、它的下一层元素可被选中
     只能用来禁用鼠标事件
     元素的子元素 pointer-events 设置成其他值如 auto、点击子元素还是会通过冒泡形式触发父元素事件
+  transform
+    位移
+      translate(x, y)
+      translate3d(x, y, z)
+      translateX
+      translateY
+      translateZ
+    缩放
+      scale(x, y)
+      scale3d(x, y, z)
+      scaleX
+      scaleY
+      scaleZ
+    旋转
+      rotate(0deg) 基于 z 轴旋转
+      rotate3d(x, y, z, angle) 以坐标原点为起始点，xyz 为终点，旋转 angle 角度
+      rotateX
+      rotateY
+      rotateZ
+    倾斜
+      skew(x, y)
+      skewX
+      skewY
+    执行顺序: 后写的属性先执行
+  transform-style
+    preserve-3d
+  transform-origin
+    center center -150px
 
 布局样式 
   媒体查询
