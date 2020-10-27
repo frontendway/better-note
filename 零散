@@ -4,3 +4,21 @@ ios 下 new Date('2020/11/12 12:11:11') 必须这样 2020-11-12 会报错
 
 只拍平一层数组
   Array.prototype.concat.apply([], [1, 2, [3, 4], [5, 6, [1, 2]]])
+
+逗号表达式
+  从左向右一次执行语句并返回最后一个语句的结果作为整个表达式判断 true 与 false 的依据
+  例如
+    _withDirectives(
+      (
+        _openBlock(), 
+        _createBlock("input")
+      ),
+      [
+        [_directive_log],
+        [_vModelText, _ctx.text]
+      ]
+    )
+    _withDirectives(vnode, directives)
+
+查看全局安装包地址
+  npm root -g
