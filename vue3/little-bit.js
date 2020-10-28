@@ -49,3 +49,15 @@ const replacer = (_key, val) => {
   }
   return val
 }
+
+/* 对象数组集合去重 */
+function removeDuplicate (list) {
+  const result = new Map()
+
+  list.forEach(item => {
+    const key = `name${item.name}output${item.output}`
+    !result.has(key) ? result.set(key, item) : null
+  })
+
+  return [...result.values()]
+}
