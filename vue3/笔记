@@ -13,3 +13,32 @@ JS 对象中的键长度限制
   MDN对这个问题保持沉默，但浏览器处理不一，大部分可处理 227 个字符串
 
 Object.keys 对 proxy 对象依然返回原始 target 的 key 集合
+
+JSON.stringify(value[, replacer[, space]])
+  replacer:
+    函数
+      JSON.stringify 将调用该函数，并传入每个成员的 key 和 value，使用返回值而不是原始值。
+      如果返回 undefined，则排除成员
+      根对象的 key 是一个空字符串
+    数组
+      则仅转换该数组中具有键值的成员。成员的转换顺序与键在数组中的顺序一样
+
+JSON.stringify(proxy) 则触发 handler(target, key, receiver) 的 key 为 toJSON
+window.toString.call(proxy) 则触发 handler(target, key, receiver) 的 key 为 Symbol(Symbol.toStringTag)
+
+var a = new Proxy({a: 1, b: {c: 1}}, {
+  get (target, key, c) {
+    // 1 4
+    return target[key]
+  },
+  ownKeys (target) {
+    // 3 
+    return Reflect.ownKeys(target)
+  }
+})
+
+var b = JSON.stringify(a, function (key, value) {
+  // 2 5
+  return value
+})
+b = '{"a":1,"b":{"c":1}}'

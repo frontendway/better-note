@@ -12,7 +12,22 @@
   </head>
   <body>
     <script>
+      var a = new Proxy({a: 1, b: {c: 1}}, {
+        get (target, key, c) {
+          // 1 4
+          return target[key]
+        },
+        ownKeys (target) {
+          // 3 
+          return Reflect.ownKeys(target)
+        }
+      })
 
+      var b = JSON.stringify(a, function (key, value) {
+        // 2 5
+        return value
+      })
+      b = '{"a":1,"b":{"c":1}}'
 
     </script>
   </body>
