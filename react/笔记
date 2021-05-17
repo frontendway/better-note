@@ -1,0 +1,109 @@
+编码规范
+  组件必须大写开头
+
+显示配置文件
+  npm run eject
+
+ref: <input ref={input => {this.input = input}} />
+refs: <button ref="btn1"></button>
+  this.refs.btn1
+
+路由
+  配置
+    import { HashRouter, Route, Switch, Link } from 'react-router-dom';
+    <HashRouter>
+      <Switch>
+        <Route path="/" exact component={A} />
+        <Route path="/user" exact component={B} />
+        <Redirect to="/?xxx=404" />
+        <Redirect from="old-path" to="new-path" />
+      </Switch>
+    </HashRouter>
+  Redirect模式
+    设置为 push 后、会向当前 history 栈新加一条信息
+    不设置 push 则替换当前 history 栈记录
+  Link
+    <Link to="/user">跳转</Link>
+    <Link to={{
+      pathname,
+      search: '?sort=name',
+      state: ''
+    }} replace>跳转</Link>
+    replace
+      true 是替换 history 中当前地址
+  NavLink
+    <NavLink
+      activeClassName=""
+      activeStyle={obj}
+      exact
+      isActive={fn}
+    ></NavLink>
+  withRouter
+    将非路由管控组件改成路由管控组件
+      withRouter(connect(null, null)(COMA))
+    在props上添加3个属性
+      props.history
+        props.history.push
+      props.location
+        /detail?id=1 props.location.search
+      props.match
+        /detail/1 props.match.params.id
+
+权限控制
+  <Route path="/login" render={
+    () => {
+      if (this.state.user) return <Redirect to="/" />
+      return <Login />
+    }
+  } />
+
+生命周期
+  给属性设置默认值
+  初始化
+    set up props and state
+  挂载
+    componentWillMount
+      组件被挂载前
+    render
+      数据改变触发
+      父组件 render 函数触发、子组件也触发
+    componentDidMount
+      组件被挂载完毕
+  更新
+    props
+      componentWillReceiveProps(nextProps, nextState)
+        条件: 子组件接受父组件参数
+        执行时期: 父组件的render函数重新执行、子组件的此函数被执行
+      shouldComponentUpdate
+        组件更新前触发、需要返回布尔值、ture则向下执行
+      componentWillUpdate(nextProps, nextState)
+        组件更新前触发
+      render
+      componentDidUpdate
+    state
+      shouldComponentUpdate
+        组件是否更新、返回布尔值、true则向下执行
+      componentWillUpdate(nextProps, nextState)
+        组件更新前触发
+      render
+      componentDidUpdate
+  销毁
+    componentWillUnmount
+      组件被移除前一瞬间
+  捕获任何渲染错误
+    componentDidCatch
+  一旦捕获到错误就会返回新的状态合并到 state 中
+    static getEerivedStatedFromError() { 
+      return { hasError: true }
+    }
+
+PureComponent 代替 Component
+
+遍历子节点
+  React.Children.map(props.children, item => {})
+
+setState
+  在生命周期函数或合成事件中执行是异步操作
+    保证 react 生命周期函数顺序不错乱
+    可以合并渲染
+  在原生事件绑定和其他异步操作中 setState 是同步的

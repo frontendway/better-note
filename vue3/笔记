@@ -42,3 +42,8 @@ var b = JSON.stringify(a, function (key, value) {
   return value
 })
 b = '{"a":1,"b":{"c":1}}'
+
+高阶函数
+  一个函数就可以接收另一个函数作为参数
+  例如
+    map、reduce、sort 等

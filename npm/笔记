@@ -1,0 +1,8 @@
+查看全局包安装路径
+  npm root -g
+
+查看全局已安装包名称
+  npm list -g --depth 0
+
+查看全局是否安装过指定包
+  npm list 包名 -g
